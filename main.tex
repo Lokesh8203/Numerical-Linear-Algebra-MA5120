@@ -98,8 +98,8 @@
     \end{enumerate}
 \end{frame}
 
-\subsection{Pseduo Code for PCA}
-\begin{frame}{Pseduo Code}
+\subsection{Pseduo Code}
+\begin{frame}{Pseduo Code for PCA}
     \begin{enumerate}
         \item Input: \\
               - X: matrix of size (n, m), where n is the number of samples and m is the number of features\\
@@ -111,7 +111,7 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Pseduo Code}
+\begin{frame}{Pseduo Code for PCA}
     \begin{enumerate}
         \item 4. Sort the eigenvectors in decreasing order of eigenvalue: Select the k eigenvectors with the largest eigenvalues, and store them in a matrix V.
         \item 5. Project the data onto the new k-dimensional space: Compute the matrix product X' = X * V, where X' is the new matrix of size (n, k) representing the data projected onto the k-dimensional space defined by the eigenvectors.
@@ -236,6 +236,31 @@
         \item One approach is to use the kernel trick, which allows us to perform non-linear transformations of the data without explicitly computing them. Specifically, the kernel trick involves mapping the original data points into a higher-dimensional feature space using a non-linear function and then computing the principal components in this feature space.
         \item Kernel PCA is a specific instance of the kernel trick, where the principal components are computed using the kernel matrix instead of the original data matrix. The kernel matrix is computed by applying the kernel function to all pairs of data points and can be efficiently computed using matrix operations.
         \item Another approach is to use other non-linear techniques, such as manifold learning methods, which aim to discover the underlying low-dimensional structure of the data by preserving the local geometry of the data. Examples of manifold learning methods include Isomap, Locally Linear Embedding (LLE), and t-Distributed Stochastic Neighbor Embedding (t-SNE).
+    \end{enumerate}
+\end{frame}
+
+\subsection{Pseduo Code}
+\begin{frame}{Pseduo Code}
+    The generalized PCA method is implemented through the following steps:
+    \begin{enumerate}
+    \item Solve the quasi covariance matrix. \newline
+    $R^\prime = \Sigma B(x_i - \bar{x_i})(x_i - \bar{x_i})^\top B^\top$
+    \item Find the eigenvalues of the quasi covariance matrix and arrange them in descending order.
+    \item Normalize the eigenvectors.
+    \item Select the first few feature vectors for dimensionality reduction.
+    \item Calculate the dimensionality reduction results.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Pseduo Code for Kernel PCA}
+    Input: Data matrix X, kernel function K, \newline number of principal components k
+    \begin{enumerate}
+    \item Compute the kernel matrix K-prime, which is a matrix that captures the similarity between pairs of data points in X using a kernel function K.
+    \item Center the kernel matrix K-prime by subtracting the mean of each row and column. This is done to ensure that the principal components are computed with respect to the covariance matrix of the data.
+    \item Compute the eigendecomposition of the centered kernel matrix K-centered to obtain the eigenvalues and eigenvectors of the covariance matrix of the data.
+    \item Select the top k eigenvectors corresponding to the largest eigenvalues, and normalize them to have unit length. These eigenvectors define the k-dimensional subspace that captures the most variance in the data.
+    \item Project the original data matrix X onto the k-dimensional subspace by computing the dot product between each data point and the k eigenvectors. This results in a k-dimensional representation of the data that captures the most important information.
+    \item The output of the algorithm is the k-dimensional representation of the data (Z), the eigenvalues (eigvals), and the eigenvectors (eigvecs) of the covariance matrix.
     \end{enumerate}
 \end{frame}
 
