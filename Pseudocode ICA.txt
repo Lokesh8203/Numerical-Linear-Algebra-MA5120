@@ -1,0 +1,45 @@
+Inputs:
+- X: Observed signals (matrix of size n x m)
+- n_components: Number of independent components to estimate
+
+Output:
+- S: Estimated independent sources (matrix of size n x n_components)
+
+1. Center the observed signals by subtracting the mean of each column of X from the corresponding column:
+
+    X_centered = X - mean(X, axis=0)
+
+2. Whiten the observed signals by applying a whitening transform to X_centered:
+
+    Cov = X_centered.T @ X_centered / n
+    U, D, _ = svd(Cov)
+    D_sqrt_inv = diag(1/sqrt(D + epsilon))
+    W = U @ D_sqrt_inv @ U.T
+    X_whitened = X_centered @ W
+
+3. Initialize the unmixing matrix randomly:
+
+    A = random(n_components, n)
+
+4. Iterate until convergence:
+    
+    for iter in range(max_iter):
+    
+        # Compute the estimated sources
+        S_estimated = X_whitened @ A.T
+        
+        # Compute the nonlinearity function and its derivative
+        G = np.tanh(S_estimated)
+        G_prime = (1 - G**2)
+        
+        # Update the unmixing matrix
+        A += step_size * (X_whitened.T @ G / n - A)
+        
+        # Orthonormalize the unmixing matrix
+        A, _ = qr(A)
+
+5. Compute the estimated independent sources:
+
+    S = X_centered @ (W @ A).T
+
+6. Return the estimated independent sources S.

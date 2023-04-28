@@ -1,0 +1,32 @@
+input:
+
+- X: matrix of size (n, m), where n is the number of samples and m is the number of features
+- k: number of principal components to keep
+
+1. Standardize the data:
+
+   - Calculate the mean of each column of X, subtract it from the corresponding column, and divide by the standard deviation of that column.
+   - This produces a standardized version of X with mean 0 and variance 1 for each feature.
+
+2. Compute the covariance matrix:
+
+   - Calculate the covariance matrix of the standardized data using the formula cov(X) = (X^T X) / (n - 1), where X^T is the transpose of X.
+
+3. Compute the eigenvectors and eigenvalues of the covariance matrix:
+
+   - Use an eigendecomposition method, such as the power iteration method or the QR algorithm, to compute the eigenvectors and eigenvalues of the covariance matrix.
+
+4. Sort the eigenvectors in decreasing order of eigenvalue:
+
+   - Select the k eigenvectors with the largest eigenvalues, and store them in a matrix V.
+
+5. Project the data onto the new k-dimensional space:
+
+   - Compute the matrix product X' = X \* V, where X' is the new matrix of size (n, k) representing the data projected onto the k-dimensional space defined by the eigenvectors.
+
+6. (Optional) Reconstruct the data in the original space:
+   - Compute the matrix product X'V^T, where V^T is the transpose of the matrix V, to obtain the reconstructed data in the original m-dimensional space.
+
+output:
+
+- X': matrix of size (n, k) representing the data projected onto the k-dimensional space defined by the eigenvectors.
