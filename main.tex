@@ -139,13 +139,24 @@
     \end{enumerate}
 \end{frame}
 
+\begin{frame}{Pseduo Code for PCA using SVD}
+    \begin{enumerate}
+        \item Input: \\
+        X: m x n matrix, where m is the number of features and n is the number of samples in the dataset
+        \item 1)Standardize: Substract the mean from each feature of X
+        \item 2)Calculate the singular value decomposition of X: X = USV'
+        \item 3)Calculate the principal components by selecting the top k columns of V' (where k is the desired dimensionality reduction)
+        \item 4)Project the original data onto the principal components to obtain the reduced dataset: Y = V(:,1:k)' * X
+    \end{enumerate}
+\end{frame}
+
 \subsection{Applications}
 \begin{frame}{Applications}
     \begin{enumerate}
         \item \textbf{Few of the applications of PCA are:}
         \item In genetics, PCA can be used to identify the most important genes and reduce the dimensions of the data, making it easier to analyze and understand the relationships between different genes.
         \item In finance, PCA can be used to identify the most important trends and patterns in stock prices and reduce the dimensions of the data, making it easier to analyze and predict future trends.
-        \item 
+        \item In computer vision, PCA can be used to identify an image's most important features and reduce the data's dimensions, making it easier to analyze and process. 
     \end{enumerate}
 \end{frame}
 
@@ -253,7 +264,7 @@
     \begin{enumerate}
         \item One approach is to use the kernel trick, which allows us to perform non-linear transformations of the data without explicitly computing them. Specifically, the kernel trick involves mapping the original data points into a higher-dimensional feature space using a non-linear function and then computing the principal components in this feature space.
         \item Kernel PCA is a specific instance of the kernel trick, where the principal components are computed using the kernel matrix instead of the original data matrix. The kernel matrix is computed by applying the kernel function to all pairs of data points and can be efficiently computed using matrix operations.
-        \item Another approach is to use other non-linear techniques, such as manifold learning methods, which aim to discover the underlying low-dimensional structure of the data by preserving the local geometry of the data. Examples of manifold learning methods include Isomap, Locally Linear Embedding (LLE), and t-Distributed Stochastic Neighbor Embedding (t-SNE).
+        \item Another approach is to use other non-linear techniques, such as manifold learning methods, which aim to discover the underlying low-dimensional structure of the data by preserving the local geometry of the data.
     \end{enumerate}
 \end{frame}
 
@@ -262,7 +273,8 @@
     The generalized PCA method is implemented through the following steps:
     \begin{enumerate}
     \item Solve the quasi covariance matrix. \newline
-    $R^\prime = \Sigma B(x_i - \bar{x_i})(x_i - \bar{x_i})^\top B^\top$
+    $R^\prime = \Sigma B(x_i - \bar{x_i})(x_i - \bar{x_i})^\top B^\top$\\
+    $B = \sqrt{\frac{1}{2}D_j}$, where $D_j$ is the weight coefficient in the jousselme evidence distance.
     \item Find the eigenvalues of the quasi covariance matrix and arrange them in descending order.
     \item Normalize the eigenvectors.
     \item Select the first few feature vectors for dimensionality reduction.
