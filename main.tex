@@ -34,6 +34,15 @@
     \end{enumerate}
 \end{frame}
 
+\begin{frame}{What is dimensionality reduction?}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\textwidth]{toy_readings.png}
+        \caption{Dimensionality reduction}
+        \label{fig:my_label}
+    \end{figure}
+\end{frame}
+
 \begin{frame}{Why dimensionality reduction is important?}
     \begin{enumerate}
         \item \textbf{Speed up computations:} High-dimensional data requires a lot of computational resources to analyze, and working with such data can be very time-consuming. By reducing the dimensions of the data, we can speed up the computation and make it more efficient.
@@ -42,6 +51,14 @@
     \end{enumerate}
 \end{frame}
 
+\begin{frame}{Signal to Noise Ratio}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{SNR.png}
+        \caption{Signal to Noise Ratio}
+        \label{fig:signal_noise_ratio}
+    \end{figure}
+\end{frame}
 
 \section{Principal Component Analysis}
 \subsection{Concept}
@@ -56,6 +73,17 @@
 \end{frame}
 
 \subsection{Mathematics involved in PCA}
+\begin{frame}{Variance}
+    \begin{enumerate}
+        \item A statistical measure that quantifies the amount of spread or dispersion in a dataset. It measures how far a set of data points are spread out from the mean.
+        \item  In PCA, the variance of a dataset is the amount of information or variation contained in that dataset. The first principal component captures the maximum amount of variation in the data. Subsequent principal components capture progressively smaller amounts of variation.
+        \item The eigenvalues measure the amount of information or variation in the data captured by each principal component.
+        \item The sum of all eigenvalues is equal to the total variance of the data. Therefore, the proportion of variance a principal component explains can be calculated as the ratio of its eigenvalue to the sum of all eigenvalues - "explained variance ratio."
+
+    \end{enumerate}
+\end{frame}
+
+
 \begin{frame}{The covariance matrix}
     \begin{enumerate}
         \item A \textbf{symmetric square matrix} that summarizes the relationships between variables in a dataset.
@@ -85,16 +113,6 @@
     \begin{enumerate}
         \item \textbf{The first principal component is a linear combination of the original variables that captures the largest amount of variation in the data}, and subsequent principal components capture orthogonal variation in decreasing order of importance.
         \item Compute the covariance matrix of the dataset $\rightarrow$ Calculate the eigenvectors and eigenvalues of the covariance matrix $\rightarrow$ Sort the eigenvectors by their corresponding eigenvalues in descending order $\rightarrow$ Select the top k eigenvectors with the highest eigenvalues to form the principal components $\rightarrow$ Project the original data onto the k principal components to obtain the lower-dimensional representation.
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}{Variance}
-    \begin{enumerate}
-        \item A statistical measure that quantifies the amount of spread or dispersion in a dataset. It measures how far a set of data points are spread out from the mean.
-        \item  In PCA, the variance of a dataset is the amount of information or variation contained in that dataset. The first principal component captures the maximum amount of variation in the data. Subsequent principal components capture progressively smaller amounts of variation.
-        \item The eigenvalues measure the amount of information or variation in the data captured by each principal component.
-        \item The sum of all eigenvalues is equal to the total variance of the data. Therefore, the proportion of variance a principal component explains can be calculated as the ratio of its eigenvalue to the sum of all eigenvalues - "explained variance ratio."
-
     \end{enumerate}
 \end{frame}
 
