@@ -1,0 +1,20 @@
+Input: Data matrix X, kernel function K, number of principal components k
+
+1. Compute the kernel matrix K_prime = K(X, X)
+
+2. Center the kernel matrix:
+   n = size(K_prime, 1)
+   K_centered = K_prime - 1/n * K_prime * ones(n, n) - 1/n * ones(n, n) * K_prime + 1/n^2 * ones(n, n) * K_prime * ones(n, n)
+
+3. Compute the eigendecomposition of the centered kernel matrix:
+   eigvecs, eigvals = eig(K_centered)
+
+4. Select the top k eigenvectors and normalize them:
+   V = eigvecs(:, end:-1:end-k+1)
+   for i = 1:k
+       V(:, i) = V(:, i) / norm(V(:, i))
+
+5. Project the data onto the k-dimensional subspace:
+   Z = K(X, X') * V
+
+Output: k-dimensional representation of the data (Z), eigenvalues (eigvals), and eigenvectors (eigvecs)
